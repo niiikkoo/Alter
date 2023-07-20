@@ -20,3 +20,14 @@ first-launch-example
 /game.yml
 /dev-settings.yml
 
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/jarRepositories.xml
+/.idea/kotlinc.xml
+/.idea/kotlinScripting.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
+/.idea/modules/
+/.idea/shelf/

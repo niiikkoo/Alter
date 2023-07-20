@@ -53,6 +53,8 @@ openrs2-buffer = { module = "org.openrs2:openrs2-buffer", version.ref = "openrs2
 openrs2-crypto = { module = "org.openrs2:openrs2-crypto", version.ref = "openrs2"}
 openrs2-compress = { module = "org.openrs2:openrs2-compress", version.ref = "openrs2"}
 
+rsmod-pathfinder = { module = "org.rsmod:rsmod-pathfinder", version = "4.2.1" }
+
 netty-all = { group = "io.netty", name = "netty-all", version.ref = "nettyAll" }
 
 

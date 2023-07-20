@@ -1,5 +1,6 @@
 package org.alter.service
 
+import com.google.common.base.Stopwatch
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.*
@@ -12,6 +13,7 @@ import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -25,18 +27,30 @@ class DumpEntityIdService : Service {
     private var outputPath: Path? = null
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
-       dump = serviceProperties.getOrDefault("dump", false)
-       if (dump) {
-           cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
-           outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
+//       dump = serviceProperties.getOrDefault("dump", false)
+//       if (dump) {
+//           cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
+//           outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
+//
+//           if (!Files.exists(outputPath)) {
+//               Files.createDirectory(outputPath)
+//               logger.info("Output path does not exist. Creating directory: $outputPath")
+//           } else if (!Files.isDirectory(outputPath)) {
+//               logger.error("Output path specified is a file - it must be a directory!")
+//           }
+//       }
 
-           if (!Files.exists(outputPath)) {
-               Files.createDirectory(outputPath)
-               logger.info("Output path does not exist. Creating directory: $outputPath")
-           } else if (!Files.isDirectory(outputPath)) {
-               logger.error("Output path specified is a file - it must be a directory!")
-           }
-       }
+
+     val stopwatch = Stopwatch.createStarted()
+
+     repeat(4) {
+         for (i in 0 until Int.MAX_VALUE) {
+             if (i > Int.MAX_VALUE - 100) {
+                println(i)
+             }
+         }
+         println("Took: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} to count till ${Int.MAX_VALUE}")
+     }
     }
 
     override fun postLoad(server: Server, world: World) {

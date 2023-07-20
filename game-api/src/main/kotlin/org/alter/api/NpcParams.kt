@@ -1,9 +1,6 @@
 package org.alter.api
 
 import org.alter.game.model.combat.NpcCombatDef
-import org.alter.game.model.weightedTableBuilder.TableTypes
-import org.alter.game.model.weightedTableBuilder.itemDrop
-import org.alter.game.model.weightedTableBuilder.tableDrops
 import org.alter.api.ext.enumSetOf
 
 /**
@@ -92,8 +89,6 @@ class NpcCombatBuilder {
 
     private val speciesSet = enumSetOf<NpcSpecies>()
 
-    var dropTable = mutableListOf<tableDrops>()
-
     fun build(): NpcCombatDef {
         check(maxHealth != -1) { "Max health must be set." }
         check(attackSpeed != -1) { "Attack speed must be set." }
@@ -146,8 +141,7 @@ class NpcCombatBuilder {
             slayerReq,
             slayerXp,
             bonuses.toList(),
-            speciesSet,
-            dropTable.toSet()
+            speciesSet
         )
     }
 

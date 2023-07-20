@@ -9,6 +9,8 @@ plugins {
 dependencies {
     implementation(project(":game-server"))
     implementation(project(":util"))
+    implementation(project(mapOf("path" to ":util:cs2")))
+    implementation(project(mapOf("path" to ":util:cs2")))
 }
 
 tasks.withType<DokkaTask> {

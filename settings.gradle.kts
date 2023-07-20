@@ -17,3 +17,5 @@ dependencyResolutionManagement {
         }
     }
 }
+include("util:cs2")
+findProject(":util:cs2")?.name = "cs2"

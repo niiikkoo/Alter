@@ -2,6 +2,7 @@ package org.alter.api.cache
 
 public object Js5Configs {
     public const val UNDERLAY: Int = 1
+    public const val CONFIGS: Int = 2
     public const val IDENTIKIT: Int = 3
     public const val OVERLAY: Int = 4
     public const val INV: Int = 5

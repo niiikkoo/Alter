@@ -53,6 +53,7 @@ listOf("find", "search").forEach { command ->
                         val name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)
                         player.message("$name : ${it.second}")
                     }
+                    // @TODO Forgot to .stop()
                     player.message("Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
                 }
             }

@@ -18,6 +18,7 @@ import net.runelite.cache.IndexType
 import net.runelite.cache.definitions.loaders.LocationsLoader
 import net.runelite.cache.definitions.loaders.MapLoader
 import net.runelite.cache.fs.Store
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import java.io.FileNotFoundException
 import java.io.IOException
 
@@ -214,8 +215,21 @@ class DefinitionSet {
         blocked.forEach { tile ->
             world.chunks.getOrCreate(tile).blockedTiles.add(tile)
             blockedTileBuilder.putTile(tile, false, *Direction.NESW)
+
+            world.collisionFlags.add(
+                absoluteX = tile.x,
+                absoluteZ = tile.z,
+                level = tile.height,
+                // Not impenetrable, so not adding projectile block flags
+                // No need to add direction blocking either, as this is just a tile that's blocked.
+                mask = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION,
+            )
+
+
         }
         world.collision.applyUpdate(blockedTileBuilder.build())
+        // @TODO
+        // world.collisionFlags.applyUpdate(update)
 
         if (xteaService == null) {
             /*

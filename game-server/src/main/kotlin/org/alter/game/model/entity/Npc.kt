@@ -7,7 +7,6 @@ import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.combat.*
-import org.alter.game.model.weightedTableBuilder.tableDrops
 import org.alter.game.sync.block.UpdateBlockType
 
 /**
@@ -107,9 +106,6 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     val species: Set<Any>
         get() = combatDef.species
-
-    val dropTable: Set<tableDrops>?
-        get() = combatDef.drops
 
     override val entityType: EntityType = EntityType.NPC
 

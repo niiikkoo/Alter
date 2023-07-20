@@ -1,8 +1,5 @@
 package org.alter.game.model.combat
 
-import org.alter.game.model.weightedTableBuilder.tableDrops
-
-
 /**
  * Represents the combat definition for an npc.
  *
@@ -43,7 +40,6 @@ data class NpcCombatDef(
     val slayerXp: Double,
     val bonuses: List<Int>,
     val species: Set<Any>,
-    val drops: Set<tableDrops>?
 ) {
 
     companion object {
@@ -80,7 +76,7 @@ data class NpcCombatDef(
 
                 respawnDelay = DEFAULT_RESPAWN_DELAY, poisonChance = 0.0,
                 venomChance = 0.0, poisonImmunity = false, venomImmunity = false,
-                slayerReq = 1, slayerXp = 0.0, bonuses = emptyList(), species = emptySet(), drops = null
+                slayerReq = 1, slayerXp = 0.0, bonuses = emptyList(), species = emptySet()
         )
     }
 }

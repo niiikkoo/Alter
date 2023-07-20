@@ -39,12 +39,17 @@ import kotlinx.coroutines.CoroutineScope
 import mu.KLogging
 import net.runelite.cache.IndexType
 import net.runelite.cache.fs.Store
+import org.alter.game.model.collision.CollisionFlag.Companion.pawnFlags
+import org.alter.game.model.collision.CollisionFlag.Companion.projectileFlags
+import org.alter.game.model.collision.CollisionUpdate
+import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import java.io.File
 import java.security.SecureRandom
 import java.util.ArrayList
 import java.util.LinkedHashMap
 import java.util.Random
 import java.util.concurrent.TimeUnit
+import kotlin.experimental.or
 
 /**
  * The game world, which stores all the entities and nodes that the world
@@ -91,8 +96,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     val npcs = PawnList(arrayOfNulls<Npc>(Short.MAX_VALUE.toInt()))
 
     val chunks = ChunkSet(this)
-
-    val collision = CollisionManager(chunks)
 
     val instanceAllocator = InstancedMapAllocator()
 
@@ -207,6 +210,12 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * The amount of time before a server reboot takes place, in game cycles.
      */
     var rebootTimer = -1
+
+    //val collision = CollisionManager(chunks)
+
+    val collision = CollisionManager(chunks)
+    val collisionFlags = CollisionFlagMap()
+
 
     internal fun init() {
         getService(GameService::class.java)?.let { service ->
@@ -643,9 +652,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         services.forEach { it.bindNet(server, this) }
     }
 
-    fun getTerminalArgs() : Array<String>? {
-        return this.attr[TERMINAL_ARGS]
-    }
+
 
     companion object : KLogging() {
 
